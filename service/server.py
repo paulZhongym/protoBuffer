@@ -32,7 +32,8 @@ class InventoryService(book_pb2_grpc.InventoryServiceServicer):
 
     def CreateBook(self, request, context):
         try:
-            print("creating book ", request)
+            print("----create a book----")
+            print("received book ", request)
             book = request.book
             books[book.isbn] = book
             print(books)
@@ -41,7 +42,10 @@ class InventoryService(book_pb2_grpc.InventoryServiceServicer):
             return book_pb2.CreateBookResponse(message="failed")
 
     def GetBook(self, request, context):
-        return book_pb2.GetBookResponse(book=books.get(request.isbn,None))
+        print("----get a book-------")
+        b = books.get(request.isbn,None)
+        print("query book: ", b)
+        return book_pb2.GetBookResponse(book=b)
 
 
 def serve():

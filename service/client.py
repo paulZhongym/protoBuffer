@@ -28,8 +28,8 @@ def run():
         print("client received: " + response.message)
         print("----get a book-------")
         nextRes = stub.GetBook(book_pb2.GetBookRequest(isbn="isbn1"))
-
-    print("client received:\n" + str(nextRes.book))
+        print("client received:\n" + str(nextRes.book))
+    print("client closed")
 
 
 if __name__ == '__main__':
