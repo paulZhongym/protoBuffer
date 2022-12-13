@@ -25,16 +25,17 @@ class TestAPIMethods(unittest.TestCase):
         print("----testing mock server----")
 
         client = InventoryClient()
+        
         client.getBook = Mock()
         client.getBook.side_effect = [book1, book2]
 
-        ans = getBookList(isbns)
+        ans = getBookList(client,isbns)
         self.assertEqual(ans,[book1, book2])
 
     def testRealServer(self):
         print("----testing real server----")
         client = InventoryClient()
-        ans = getBookList(isbns)
+        ans = getBookList(client, isbns)
         self.assertEqual(ans,[book1, book2])
 
 
